@@ -12,8 +12,10 @@
     "addApp": "echo export default function App(){\rreturn ^<div^>App^</div^>;\r} > ./src/App.jsx"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.3.1",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "tailwindcss": "^4.3.1"
   },
   "devDependencies": {
     "@types/react": "^19.2.17",

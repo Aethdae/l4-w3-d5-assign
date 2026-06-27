@@ -17,15 +17,19 @@ def home():
 def roll():
     return {"result": f"Your total roll is {get_dice_result(dice)} out of a possible: {get_dice_max(dice)}"}
 
+@app.get("/dice")
+def get_dice():
+    return {"dice": dice}, 200
+
 @app.route("/dice", methods=["DELETE", "POST"])
 def modify_dice():
     data = request.json
+
     if not data.get("die") or type(data.get("die")) != int:
         return {"error": "Must include a die to include/delete."}
     
     if request.method == "DELETE":
         if data.get("die") in dice:
-            print(data.get("die"), dice)
             dice.remove(data.get("die"))
             return {"message": f"{data.get("die")} removed succesfully."}, 202
         else:
@@ -38,9 +42,10 @@ def modify_dice():
 @app.route("/clear-dice")
 def clear_dice():
     dice.clear()
+    return {"message": "Dice cleared!"}
     
 def get_dice_result(dice):
-    return reduce(lambda x, y: x + get_rand_number(y), dice)
+    return reduce(lambda x, y: x + get_rand_number(y), dice, 0)
 
 def get_dice_max(dice):
     return reduce(lambda x, y: x + y, dice, 0)
@@ -48,4 +53,4 @@ def get_dice_max(dice):
 def get_rand_number(limit):
     if (limit < 0):
         return 0
-    return random.randint(0, limit)
+    return random.randint(1, limit)
