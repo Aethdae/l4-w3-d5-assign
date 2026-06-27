@@ -11,6 +11,9 @@ Keep on rolling with the simple dice manager. Add the dice you wish to roll, and
   - `source .venv/Scripts/activate` to start the environment
   - `py -m pip install -r requirements.txt` to install python requirements to the environment
   - `flask run` to start backend server
+    or on Windows:
+  - `chmod +x run.sh`
+  - `./run.sh`
 
 ### Frontend
 
